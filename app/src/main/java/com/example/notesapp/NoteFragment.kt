@@ -15,6 +15,7 @@ import com.example.notesapp.models.NoteResponse
 import com.example.notesapp.utils.NetworkResult
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class NoteFragment : Fragment() {
@@ -23,6 +24,7 @@ class NoteFragment : Fragment() {
     private val binding get() = _binding!!
     private var note:NoteResponse?=null
     private val noteViewModel by viewModels<NoteViewModel>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

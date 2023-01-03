@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.notesapp.databinding.FragmentMainBinding
 import com.example.notesapp.models.NoteResponse
 import com.example.notesapp.utils.NetworkResult
+import com.example.notesapp.utils.TokenManager
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
@@ -26,6 +28,8 @@ class MainFragment : Fragment() {
 
     private lateinit var adapter:NoteAdapter
 
+    @Inject
+    lateinit var tokenManager: TokenManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +49,11 @@ class MainFragment : Fragment() {
         binding.noteList.adapter = adapter
         binding.addNote.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_noteFragment)
+        }
+
+        binding.ivLogout.setOnClickListener {
+            tokenManager.deleteToken()
+            findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
         }
     }
 
